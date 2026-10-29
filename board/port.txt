@@ -1,0 +1,12 @@
+COM8
+
+Board under test: PYNQ-Z2 (XC7Z020), USB-UART/JTAG bridge = FTDI FT2232H
+(VID_0403 PID_6010), serial port = COM8 @ 115200 8N1.
+JTAG chain seen by hw_server: arm_dap idcode 0x4BA00477, xc7z020 idcode 0x23727093.
+
+Confirmed 2026-10-29 15:14 by sending 'r' to the running bare-metal app:
+28/28 arrays, 5504/5504 words, ALL PASS.
+
+The other ports on this host (COM3-COM6) are Bluetooth virtual ports. They are
+not the board; bm_ports.ps1 filters them out. Do not hardcode COM8 anywhere --
+set $env:BM_PORT, or pass -Port.

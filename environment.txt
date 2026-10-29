@@ -1,0 +1,27 @@
+# Environment used to produce the published vectors and results
+# Captured 2026-10-29
+
+## Host
+OS                : Windows-11-10.0.26200-SP0
+CPU               : Intel64 Family 6 Model 183 Stepping 1, GenuineIntel
+Python            : 3.12.10  (C:\Users\Lenovo\AppData\Local\Programs\Python\Python312\python.exe)
+
+## Python packages (pinned)
+matplotlib==3.11.1
+numpy==2.5.2
+pandas==2.3.3
+reportlab==5.0.1
+scikit-learn==1.9.0
+scipy==1.18.1
+torch==2.14.0
+
+## Vendor tools
+Vivado   : 2024.1   (xsim / xvlog / xelab / vivado)
+Vitis    : 2024.1   (arm-none-eabi-gcc 12.2.0, bootgen)
+Note     : the competition guide recommends Vivado/Vitis 2026.1 or 2025.2.
+           2024.1 is used here; every build/sim script resolves the
+           install through XILINX_VIVADO / XILINX_VITIS, so a newer
+           toolchain works without editing the repo.
+
+## Board
+PYNQ-Z2 (XC7Z020-1CLG400C), 100 MHz FCLK_CLK0, UART 115200 8N1.

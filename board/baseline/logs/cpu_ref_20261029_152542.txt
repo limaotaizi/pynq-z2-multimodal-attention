@@ -1,0 +1,47 @@
+
+================================================
+ CPU reference: modules 1+2 on the Cortex-A9
+ same instr stream, same weights, same vector
+================================================
+  492 instructions, 55824 weight bytes, 3440 bias words
+  scratch 8192 words, input 1636 words
+  XTime counts per second = 325000000
+
+-- bit-exactness against the RTL vectors --
+  hre    1024 words  ok
+  he     1024 words  ok
+  zpe     256 words  ok
+  qe       64 words  ok
+  ke      192 words  ok
+  ve      192 words  ok
+  z0e      64 words  ok
+  zpo     256 words  ok
+  qo       64 words  ok
+  ko      192 words  ok
+  vo      192 words  ok
+  z0o      64 words  ok
+  zpa     256 words  ok
+  qa       64 words  ok
+  ka      192 words  ok
+  va      192 words  ok
+  z0a      64 words  ok
+  zps     256 words  ok
+  qs       64 words  ok
+  ks      192 words  ok
+  vs      192 words  ok
+  z0s      64 words  ok
+  ALL PASS
+
+-- engine time on the A9 (5 runs) --
+  run 1: 7.453 ms
+  run 2: 7.473 ms
+  run 3: 7.452 ms
+  run 4: 7.470 ms
+  run 5: 7.471 ms
+  ------------------------------------------
+  min    7.452 ms
+  median 7.470 ms
+  max    7.473 ms
+  PL engine for the same instruction stream: 20.790 ms
+
+-- done.  'q' not needed; reset the board to reboot --

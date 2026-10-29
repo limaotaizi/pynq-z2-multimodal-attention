@@ -1,0 +1,124 @@
+{
+  "design": "all_bd",
+  "note": "Register maps of the three user IP in the M=4 block design, transcribed from the RTL (src/rtl/attn_axi.v, ts_top.v, eeg_fe_top.v) and checked against the handoff file skill/tests/data/all_bd.hwh. Offsets are byte offsets inside each IP's AXI aperture. Identity registers are marked; read and match them before any other access -- they are the only software-visible way to tell two bitstreams apart.",
+  "ips": {
+    "attn_0": {
+      "modtype": "attn_axi",
+      "params": {"T": 4, "D": 16},
+      "regs": {
+        "CTRL": {
+          "offset": 0, "width": 32, "access": "w",
+          "fields": {"START": {"bits": [0, 0], "desc": "one-shot; ignored while BUSY"}}
+        },
+        "STATUS": {
+          "offset": 4, "width": 32, "access": "r",
+          "fields": {
+            "BUSY": {"bits": [0, 0], "desc": "engine running"},
+            "DONE": {"bits": [1, 1], "desc": "sticky; cleared by writing DONE_CLR"}
+          }
+        },
+        "ID": {
+          "offset": 8, "width": 32, "access": "r",
+          "identity": true,
+          "expect": 1096024065,
+          "fields": {"ID": {"bits": [31, 0], "desc": "0x41540001 = 'AT'"}}
+        },
+        "DONE_CLR": {
+          "offset": 12, "width": 32, "access": "w",
+          "fields": {"CLR": {"bits": [0, 0], "desc": "clear the sticky DONE"}}
+        }
+      },
+      "windows": {
+        "SCRATCH": {"offset": 256, "size": 16384, "word_bits": 16, "access": "rw"}
+      }
+    },
+
+    "eeg_0": {
+      "modtype": "eeg_fe_top",
+      "regs": {
+        "CTRL":   {"offset": 0,  "width": 32, "access": "rw"},
+        "STATUS": {
+          "offset": 4, "width": 32, "access": "r",
+          "fields": {
+            "BUSY":       {"bits": [0, 0],  "desc": "window accumulating"},
+            "DONE":       {"bits": [1, 1],  "desc": "window complete"},
+            "FIFO_EMPTY": {"bits": [2, 2],  "desc": "PS has not filled the FIFO"},
+            "FIFO_FULL":  {"bits": [3, 3],  "desc": "PS is behind"},
+            "FCNT":       {"bits": [15, 8], "desc": "FIFO level"},
+            "OVF":        {"bits": [16, 16],"desc": "sticky sample loss; write OVF=1 to clear"}
+          }
+        },
+        "WIN_CNT":    {"offset": 8,  "width": 32, "access": "r"},
+        "BEAT_CNT":   {"offset": 12, "width": 32, "access": "r"},
+        "FIFO_DBG":   {"offset": 16, "width": 32, "access": "r"},
+        "RES_INDEX":  {"offset": 20, "width": 32, "access": "rw"},
+        "RES_DATA":   {"offset": 24, "width": 32, "access": "r"},
+        "OVF":        {"offset": 28, "width": 32, "access": "w",
+                       "fields": {"CLR": {"bits": [0, 0], "desc": "clear the sticky overflow"}}},
+        "BUILD": {
+          "offset": 32, "width": 32, "access": "r",
+          "identity": true,
+          "expect": 1592590337,
+          "fields": {"BUILD": {"bits": [31, 0], "desc": "0x5EED0001"}}
+        },
+        "GEOM": {
+          "offset": 36, "width": 32, "access": "r",
+          "identity": true,
+          "expect": 4064512,
+          "fields": {
+            "NB":  {"bits": [15, 8], "desc": "5 bands"},
+            "NCH": {"bits": [23, 16], "desc": "62 channels"}
+          }
+        }
+      }
+    },
+
+    "ts_0": {
+      "modtype": "ts_top",
+      "regs": {
+        "CTRL": {
+          "offset": 0, "width": 32, "access": "rw",
+          "fields": {"RUN": {"bits": [0, 0], "desc": "enable the timestamp counter"}}
+        },
+        "STATUS": {
+          "offset": 4, "width": 32, "access": "r",
+          "fields": {
+            "FIFO_EMPTY": {"bits": [0, 0],  "desc": "no timestamp pending"},
+            "FIFO_FULL":  {"bits": [1, 1],  "desc": "consumer is behind"},
+            "RUN":        {"bits": [2, 2],  "desc": "counter enabled"},
+            "LEVEL":      {"bits": [15, 8], "desc": "FIFO level"}
+          }
+        },
+        "T_NOW_LO":   {"offset": 8,  "width": 32, "access": "r",
+                       "fields": {"T": {"bits": [31, 0], "desc": "free-running counter, low 32 bits"}}},
+        "T_NOW_HI":   {"offset": 12, "width": 32, "access": "r",
+                       "fields": {"T": {"bits": [15, 0], "desc": "counter bits 47:32"}}},
+        "FIFO":       {"offset": 16, "width": 32, "access": "r",
+                       "fields": {"READ_DEQUEUES": {"bits": [0, 0],
+                                  "desc": "a read of this offset pops the FIFO"}}},
+        "ENQ_COUNT":  {"offset": 20, "width": 32, "access": "r"},
+        "FIFO_LAST":  {"offset": 24, "width": 32, "access": "r",
+                       "fields": {"T_HI": {"bits": [13, 0],  "desc": "t[47:32]"},
+                                  "MOD":  {"bits": [15, 14], "desc": "which modality was stamped"}}},
+        "T0_LO": {"offset": 32, "width": 32, "access": "r"}, "T0_HI": {"offset": 36, "width": 32, "access": "r"},
+        "T1_LO": {"offset": 40, "width": 32, "access": "r"}, "T1_HI": {"offset": 44, "width": 32, "access": "r"},
+        "T2_LO": {"offset": 48, "width": 32, "access": "r"}, "T2_HI": {"offset": 52, "width": 32, "access": "r"},
+        "T3_LO": {"offset": 56, "width": 32, "access": "r"}, "T3_HI": {"offset": 60, "width": 32, "access": "r"},
+        "TAU0": {"offset": 64, "width": 32, "access": "rw"}, "TAU1": {"offset": 68, "width": 32, "access": "rw"},
+        "TAU2": {"offset": 72, "width": 32, "access": "rw"}, "TAU3": {"offset": 76, "width": 32, "access": "rw"},
+        "OVF_STICKY": {"offset": 80, "width": 32, "access": "rw"},
+        "UF_STICKY":  {"offset": 84, "width": 32, "access": "rw"},
+        "SRC": {
+          "offset": 92, "width": 32, "access": "r",
+          "identity": true,
+          "fields": {"SRC": {"bits": [3, 0],
+                     "desc": "0xF = internal strobe, no external reference. If you read 0xF here, the four modalities are NOT synchronised to anything."}}
+        },
+        "DIV0": {"offset": 96, "width": 32, "access": "rw"}, "DIV1": {"offset": 100, "width": 32, "access": "rw"},
+        "DIV2": {"offset": 104, "width": 32, "access": "rw"}, "DIV3": {"offset": 108, "width": 32, "access": "rw"},
+        "EPS0": {"offset": 112, "width": 32, "access": "rw"}, "EPS1": {"offset": 116, "width": 32, "access": "rw"},
+        "EPS2": {"offset": 120, "width": 32, "access": "rw"}, "EPS3": {"offset": 124, "width": 32, "access": "rw"}
+      }
+    }
+  }
+}

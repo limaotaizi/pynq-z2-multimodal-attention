@@ -1,0 +1,17 @@
+# Keep line endings consistent across Windows / Linux / macOS contributors.
+* text=auto eol=lf
+
+# Golden vectors are byte-exact inputs to the test benches. If git rewrote their
+# line endings their md5 would change and "did the vectors change?" would become
+# unanswerable, which defeats the point of committing them.
+*.mem binary
+*.npz binary
+*.bit binary
+*.bin binary
+*.xsa binary
+
+# The two Vitis build scripts must keep their UTF-8 BOM: PowerShell 5.1 decodes
+# BOM-less .ps1 as the system ANSI code page (GBK here), the non-ASCII comments
+# then garble the parse, and the error points at the wrong line.
+board/baremetal/build_elf.ps1     -text
+board/baremetal/build_bootbin.ps1 -text

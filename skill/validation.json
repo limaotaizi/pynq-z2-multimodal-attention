@@ -1,0 +1,46 @@
+{
+  "reproduce": "sh skill/tests/run_tests.sh     (offline: no board, no pynq, no network)",
+  "golden_compare": {
+    "what": "NPZ numerical comparator. Each case runs golden_compare.py on a real committed weight file (src/model/assets/w_attn4_p_emotion_v_f0.npz) and checks the exit code.",
+    "same": true,
+    "word_change": false,
+    "missing": false,
+    "dtype_change": false,
+    "shape_change": false
+  },
+  "pynq_probe": {
+    "what": "Handoff parsing, register-map validation and word capture, checked against this repository's own artefacts.",
+    "hwh_parse": {
+      "9_submodules": true,
+      "three_custom_ip": true,
+      "axi_apertures": ["attn_0 0x40000000-0x4000FFFF", "ts_0 0x40010000-0x40010FFF", "eeg_0 0x40020000-0x40020FFF"],
+      "clock_hz_from_hwh": 200000000
+    },
+    "regmap_validation": {
+      "clean_spec_passes": true,
+      "window_past_aperture_rejected": true,
+      "overlapping_registers_rejected": true,
+      "overlapping_fields_rejected": true,
+      "modtype_mismatch_rejected": true,
+      "parameter_mismatch_rejected": true,
+      "unknown_instance_rejected": true,
+      "resolve_refuses_invalid_spec": true
+    },
+    "field_ops": {
+      "decode_encode_round_trip": true,
+      "out_of_range_field_rejected": true,
+      "unknown_field_rejected": true
+    },
+    "capture": {
+      "real_vector_file_word_count": 1636,
+      "identical_blocks_pass": true,
+      "one_bit_change_fails_with_index": true,
+      "short_capture_fails": true,
+      "serial_dump_parses": true
+    },
+    "not_verified": [
+      "overlay.Board has never been executed on hardware in this form. The offline modules are tested; the board module is written against the PYNQ 3.x API and is unverified.",
+      "No case here proves that a passing register map means the loaded bitstream is the intended one. Only an identity-register match does that, and it is not tested offline."
+    ]
+  }
+}

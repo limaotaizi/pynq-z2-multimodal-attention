@@ -1,0 +1,763 @@
+            
+
+                                                        ·2026-10-29
+
+                                            
+
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+1  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+2  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+3  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+4 / . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+5  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+6  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+7  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+
+                                                                          1
+ PYNQ-Z2XC7Z020 10 ns 
+2026·FPGA ·AMD 
+
+
+
+
+ 7 
+
+                                   
+metrics/metrics.csv
+                                   
+metrics/{latency,resource,timing,  
+accuracy,cpu_baseline}.csv         
+build/reports/*.rpt
+                                   Vivado metrics 
+sim/run/run_attn_m{2,3,4}.sh       
+BITSTREAM_MANIFEST.md              
+report/ai_collab.md                md5 
+skill/                             
+                                   pynq_probe +
+                                   golden_compare.py50 sh
+                                   skill/tests/run_tests.sh
+
+
+
+1 
+
+1.1 
+ EEG AU GSR
+
+ 4 s 
+ PC ----
+
+
+       
+       
+
+1.2  FPGA
+
+
+                                                                               2
+1.  CPU + 
+   28  / 5,504 
+   
+
+2.  2,079,001  20 
+   
+
+3.  10 ns  CPU 
+
+1.3 
+
+ + 
+
+
+                                                                     
+
+           33.3 %                                                    --
+ macro-F1  0.34­0.40                                                 metrics/accuracy.csv
+           SRC=0xF                                                   7
+            PMBus                                                    7
+
+
+ 7 
+
+2 
+
+2.1 
+
++-----------------------------------------------------------------+
+
+|                                       |
+
+| EEG 62ch@256Hz .  . AU . GSR . DRDY   |
+
++--------------------------------------------+--------------------+
+
+                        |
+
++-------------------------------------------v---------------------+
+
+| PL  ts_top / ts_core                  |
+
+| 48 bit  @10 ns  = 32.58               |
+
+|  >  t_mt_m e_m                        |
+
++--------------------------------------------+--------------------+
+
+                        | ts_m[47:0]
+
++-------------------------------------------v---------------------+
+
+| PL  eeg_fe_topEEG                     |
+
+| 62  x 5  87 256 Hz  1.4 %@100 MHz |
+
++--------------------------------------------+--------------------+
+
+                        | int16 
+
++-------------------------------------------v---------------------+
+
+| PL  attn_axi --> attn_coreM=2/3/4     |
+
+                                     3
+| scratch 8192x16 bit . irom 492/512 . wrom 215   |
+
+| GAP >  > LDS >  Zp                              |
+
++--------------------------------------------+--------------------+
+
+                                 | AXI4-Lite 
+
++-------------------------------------------v---------------------+
+
+| PS Cortex-A9                                    |
+
+|  softmax  .  MLP64 +  .  |
+
++-----------------------------------------------------------------+
+
+2.2 
+
+                                                  
+                                 1,083
+src/rtl/attn_core.v                               M=2/3/4 
+                                 320              RTL
+src/rtl/attn_axi.v                                AXI4-Lite scratch START/
+                                 672              DONE 
+src/rtl/eeg_fe.v                                  EEG 128  FIFO + 
+                                 332              
+src/rtl/eeg_fe_top.v             422               AXI 
+src/rtl/ts_top.v                 209              
+src/rtl/ts_core.v                85                 
+src/rtl/tau_comp.v               280               
+src/rtl/log2_cordic.v            149              CORDICEEG 
+src/rtl/align_buf.v              148              
+src/rtl/win_stats.v              82 / 66 /        
+src/rtl/sdpram.v / frac_div.v /  73               
+strobe_gen.v                     532
+src/rtl/audio_top.v  4           4,453            I2S 
+                                 439              17  Verilog 
+src/model/fixpt.py               426              
+src/model/export.py                               
+
+2.3 PS/PL 
+MLP64 + softmax  PS
+
+                                 
+
+PS  CCortex-A9                   0.242 ms
+PL                               0.167 ms
+PL  + CPUPL                      1.004 ms5.01×
+
+PL  1.45  1,024  5 
+                                                                               4
+ PL PSmetrics/cpu_baseline.csv status 
+
+2.4 
+clk_fpga_0 PS7 FCLK_CLK0
+
+   ·  200 MHzPCW_FPGA0_PERIPHERAL_FREQMHZ {200} Vivado 
+        200 MHz  4.2
+
+   · DIVISOR0  10 100 MHz
+   ·  100.00 MHz 2,079,001  20.790 ms----
+   · AXI EEG 
+
+3 
+
+3.1 
+
+
+               
+
+   int8 2-¹0   8
+   int8        8
+    Q  42 bit  42
+   int16       16
+/  int16       16
+
+EEG  int16 <<6  Q3.21 Q3.1518 bit/ Q3.2124 bit
+42 bit Verilog 
+
+   1. ----
+   2. ----
+   3. 72×72 ----200 MHz  WNS -10.0 ns
+
+
+3.2 M=2/3/4
+ RTL  ROM 
+
+   5
+                                scratch
+M=2  e+o      29,984  115  182
+M=4  e+o+a+s  55,824  215  492  5,376
+                                8,192
+
+
+
+   · irom492/512  GAPLDS
+        M irom wrom 
+
+   · wrom  44 0:131071 M ----
+        M 
+
+   ·  i  j  i
+   · scratch M=4  8,192 / 8,192 mem irom 
+
+       M=5  7 
+
+attn_axi.v  scratch  Verilog UMVivado 
+ Verilog ----M=4 UM=12 8 8 
+ M=4 2026-10-27 
+
+   · UM `ATTNAXI_UM 8M=4  12
+   · BITSTREAM_MANIFEST.md UM
+   · ----MISMATCH
+
+3.3 
+
+   · 48 bit 10 ns  32.58 
+   ·  t_m_m _m 
+
+        7 
+   · SRC 0xF = 
+
+       
+
+3.4 EEG 
+
+62  × 5 delta/theta/alpha/beta/gamma 87 256 Hz  62×256×87 /
+100 M = 1.4 %100 MHz 128  FIFO  PS  (, ) 
+---- DRDY 
+  CTRLSTATUSWIN_CNTBEAT_CNTSAMPLERES_INDEXRES_DATAOVF       
+BUILD=0x5EED0001GEOM=0x003E0500=NCH 62NB 5
+
+
+3.5 AXI 
+
+                      6
+                        
+
+0x0000         CTRL     Wbit0 = STARTbusy 
+0x0004
+0x0008         STATUS   Rbit0 = busybit1 = done
+0x000C
+0x0100­0x40FF  ID       R0x41540001'AT'
+
+               DONE_CLR W done
+
+               scratch  RW8192 × 16 bit
+
+ 32 bit  W 0x0100 + 4W 16 bit 2W 2W+1 scratch
+ 0x0100­0x40FF  16 KB = 4,096  = 8,192  16 bit UM ----UM 
+ M=4 UM T=4D=16UM=8M=2/3/ 12M=4
+AW=16
+done  PS ---- PS 
+DONE_CLR START 
+
+3.6  200 MHz 
+
+M=4 build/reports/worst_m4.rpt
+
+acc0  FDRE.Q --> lds_p0r  DSP48E1.B[5]
+ 1.917 ns 1.439 ns 0
+DSP48E1 setup  3.707 ns <  5 ns  74 %
+
+ DSP  DSP48E1 
+ 3.7 ns 200 MHz 
+
+ 2,079,001  md5
+ 6  100
+MHz+4.264 ns 
+
+4 /
+
+4.1 
+
+               
+
+               XC7Z020-1CLG400CPYNQ-Z2
+               Vivado / Vitis 2024.1
+               2026.1  2025.2
+ 2024.1         2024.1 
+                md5 
+
+XILINX_VIVADO / XILINX_VITIS  2025.2/2026.1
+ 7.1
+
+                                                                               7
+4.2 routed
+
+     Slice LUT        Slice Reg                BRAM          DSP48E1
+
+M=2  6,649 (12.50 %)  9,537 (8.96 %)           44 (31.43 %)  20 (9.09 %)
+M=3  7,135 (13.41 %)  9,559 (8.98 %)           44 (31.43 %)  20 (9.09 %)
+M=4  6,995 (13.15 %)  9,566 (8.99 %)           44 (31.43 %)  20 (9.09 %)
+
+build/reports/util_m{2_e4,3,4}.rptmetrics/resource.csv
+
+
+   1. M=4  LUT  M=3 6,995 < 7,135M=4 
+        M=3  phys_opt 2026-10-29 
+        M=3  7,135 LUT / 9,559 FF / WNS -0.656 / 197 
+       attn3_e4.bit util_m3.rpt  2026-10-24 
+
+     7,071 / 9,485 / -0.639 / 239
+
+   2. 54.5 KB  ROM BRAM  44  BRAM  198 KB 54.5 KB8.65
+       %BRAM  8.65 %
+       
+
+OOC attn_axi 2,708 LUT / 1,839 FF / 38.5 BRAM / 8 DSPOOC IP  BD 
+ LUT 
+
+4.3 
+
+                      WNS @200                 WNS @100 MHz
+                      MHz
+attn2_e4.bit                     843 / 25,249  +4.081 ns
+attn3_e4.bit          -0.919 ns  197 / 25,273  +4.344 ns
+attn4_e4.bit          -0.656 ns  274 / 25,366  +4.264 ns
+ts_e4.bit             -0.736 ns  0             100 MHz 
+A1                    +0.083 ns  0 / 23,719    --
+                      +0.002 ns
+
+M=4 WHS = +0.037 ns0 M=2 +0.040M=3 +0.016
+
+ 200 MHz  Vivado  200 MHz 
+ 100 MHz 4.1­4.3 ns 100 MHz  routed 
+ 10 ns 200 MHz  5----
+build/reports/README.md
+
+ts_e4 impl_1 -0.012 ns
+
+
+                                 8
+4.4                      (B)          md5
+
+                M=4     4,045,674     1e2555571c380d8fbaa2324141023e6f
+  attn4_e4.bit  M=3     4,045,674     a607316a7041fdb9798c139bff430a6c
+  attn3_e4.bit  M=2     4,045,674     d9fd5e4565f20f931e51df18aa89da48
+  attn2_e4.bit          4,045,673     4fa3518fcb61ad5d91d8379001909806
+  ts_e4.bit     M=4     4,231,752     93f8caee4a2e4b365622cfa0dee230d2
+  BOOT.BIN
+
+.gitignoremd5 
+ md5 ----2026-10-29 M=2
+ M=4  md5 M=3  57  LUTFFBRAMDSPWNS
+WHS§5.8md5 
+---- gate ---- md5 
+
+4.5 
+
+build/build_bd_all.tcl  >  bd_all
+
+build/build_bd_all_m*_impl.tcl > //
+
+build/report_a1_util.tcl >  routed .dcp 
+
+board/baremetal/build_elf.ps1 >  ELF
+
+board/baremetal/build_bootbin.ps1 > FSBL + bit + ELF > BOOT.BIN
+
+ Tcl ip_repo_all/work2/out/ 
+
+
+· build/make_tree.ps1 MEM_DIR 
+   attn_axi.v UM 
+
+· build_*.tcl  guard Vivado 
+    IP 
+
+ 2026-10-29  §5.8 BITSTREAM_MANIFEST.md
+
+5 
+
+       2026-11-04 18:00/ 
+       
+5.1 
+cd sim/run && ./run_attn_m4.sh
+
+                                                                               9
+                                   
+
+M=2      14                 3,200  ALL PASS
+M=3      21                 4,224  ALL PASS
+M=4      28                 5,504  ALL PASS
+
+src/model/fixpt.py sim/vectors/<mode>/
+466,157 / 1,124,691 / 2,079,001
+
+ AFFEC  Vivado
+
+AFFEC_CACHE=... ./regen_vectors.sh m4
+
+
+5.2 
+
+   ·  × 28  × 5,504 board_repeat_results.json
+   ·  3 
+   · JTAG  ELF  SD attn4_e4.bit 28 / 5,504 
+
+       
+   ·  50  21.644 msp99 21.646 ms 2 µs
+
+5.3 
+
+                  @100                                
+                 MHz
+M=2   466,157               4.686 / 4.717 / 4.742 ms  
+M=3   1,124,691  4.662 ms   11.33 ms                  
+M=4   2,079,001  11.247 ms  20.89 ms10-28  20.88      
+M=4   2,079,001  20.790 ms  20.790 ms                 
+                 20.790 ms
+
+ 4 s 
+
+                            
+Python   36.48 ms
+                             8.41 +  20.88 +  6.72 36.01 0.47
+         21.650 ms          ms 
+                             1,636  0.189 +  20.790 +  1,024  0.113 + PS 
+                             0.555
+
+ 4 s  0.54 % 5,504 ----
+                                                                              10
+M=3  M=4  1.86× 0.86× 14%
+
+
+ 5.4  CPU 
+
+PL ----
+ 2026-10-29 board/baseline/cpu_ref_20261029_152542.txt
+  Cortex-A9 492  INT8 
+  requant  exp  8,192  scratch gen_cpu_ref.py 
+ sim/vectors/m4/*.mem  C cpu_ref.c attn_core.v 
+ 
+
+            PL @100    Cortex-A9 @650 MHz  
+            MHz
+                       7.470 ms5 min 7.452 / max 7.473 A9  2.78×
+            20.790 ms
+exp_*.mem   2,079,001   4.85 M             PL  2.33×
+            
+                       22/22               --
+
+PL  A9  2.78×20.790 / 7.470
+ 
+ C ----
+
+PL  A9  2.33  6.5 100 vs 650 MHz2.33 < 6.5
+20  DSP48E1 9 % 1.5 M  MAC 0.7  MAC----
+ DSP  §5.6  200 MHz  200
+MHz 10.40 ms 1.39×
+ PL  MAC  DSP 
++  requant 
+ §2.3 2.3  1.45×  PL 0.167 vs 0.242 mssecondary_citation
+ 2.78×  PL  PL 
+PL  CPU RTL 
+
+
+   · CPU -O2 SIMD A9  VFPv3-D16 NEON
+        int8  2.78×  A9  CPU 
+       
+
+   ·  AXI  0.190 ms  0.113 ms---- CPU 
+       
+
+   · D-cache  DDRCPU  BSP COUNTS_PER_SECOND 325 MHz
+       = 
+
+N  6 64  0RTL
+o_N - 1 PE S_EXEC o_BA RESGAP LG2T6 
+
+                                                                              11
+SH PE 
+ 4 
+
+5.5 
+
+                                              95% CI
+
+80  poolede+o+a - e+o  +2.28 pt               [+0.55, +3.74] bootstrap
+ CI                    +2.28 pt               [+1.19, +3.37]20  t
+64  bootstrapAU        +2.287 pt              [+1.466, +3.122]
+64  bootstrapC AU      +2.451 pt              [+1.506, +3.405]
+ C                     +2.28 / +2.30 / +2.10  3/3  0 0.19 pt
+ GSRS                  +0.01 / -0.44 / +1.24   
+
++2.28 +2.451  pooled OOFAU 
+
+ 0f_emotion_v +1.95 f_emotion_a -2.72 
+ 0
+
+5.6 
+
+                 
+
+float  macro-F1  0.36811
+ INT8            0.37003
+                 0.36695
+float vs         99.61 %
+                 0 / 0 / 0 / 01.26 M / 98 K / 207 K / 98 K 
+
+ INT8
+ INT8 ----
+1,016 
+
+
+5.7 
+
+   ·  80  F1 1e-6original_fold_manifest.json
+   ·  80  ----verification.json
+   ·  bug
+
+                       12
+5.8 
+
+README.md  Quick startDay 5  PYNQ-Z2SD 
+USB 
+2026-10-29 build/make_tree.ps1 -Mode
+<m> build_bd_all.tcl build_bd_all_m*_impl.tcl write_bit_attn*.tclVivado 2024.1
+M=4  M=2 M=4 M=2 .bit
+ 82­106  md5 7f2a3fea...4cb32e0c....rpt
+hwdef.xml M=3  7,135 LUT / -0.656 ns / 197 
+attn3_e4.bit  M=3 
+----63  57 
+LUTFFBRAMDSPWNSWHShwdef.xmlall_bd.bdaps7_init.*
+ M=3 build_bd_all_e4_impl.tcl
+.bit  md5 
+BITSTREAM_MANIFEST.md
+
+6 
+
+report/ai_collab.md
+
+6.1 
+
+
+
+
+6.2 
+
+UM ----Vivado  BD  Verilog
+ md5  +  + 
+ Vivado  4,552 
+ +  +  16 
+ 126  0
+-d  Windows  xvlog.bat -d MEM_DIR="\"../vectors/m4\"" Can not
+find file: "\"../vectors/m4\""
+memdir.vh `ifndef  RTL 
+
+
+6.3 skill/ 
+
+
+pynq_probe FPGA 
+ bug
+ AXI AXI 
+ OKAY MMIO 
+
+                                                                              13
+   · hwh.py .hwh/.xsa IP 
+       `define  Verilog .hwh ----
+       UM "UM" not in attn.params
+
+   · regmap.py  JSON 
+       modtype  FPGA resolve()
+       ----
+
+   · capture.py 
+       
+
+   · overlay.py // DONE 
+       BUSY 
+
+ 50 overlay.py 
+PYNQ 3.x API skill/README.mdskill/
+validation.json  docstring 
+golden_compare.pyNPZ 
+dtypedtype object 
+ --atol 0
+
+/ ROM
+ IP ----UM 
+MISMATCH 
+
+
+ md5
+sh skill/tests/run_tests.sh pynq
+
+6.4 
+
+   1. 
+       MISMATCH
+
+   2.  200 MHz  100 MHz 20.790  20.89  21.650
+       
+
+   3.  ts_e4 M=2  200 MHz S ----
+       
+
+7 
+
+
+
+
+                                                                              14
+7.1 
+
+#                         
+
+1                          EEG/GSR//
+                          SRC=0xF
+
+2                          + /
+                          
+
+3                          PMBus
+
+4    CPU                  A9 7.470 ms vs PL 20.790 ms  A9  PL
+
+              2026-10-29   2.78× §5.4
+
+                          PL 
+
+                           NEON 2.78×  A9 
+
+                          
+
+5   200 MHz   -0.736 ns  DSP 
+
+                          
+
+6                         0.34­0.40  33.3 % 
+
+7                         RF +0.77 pt [-0.91, +2.51]R2G +0.83 pt
+                          [-1.70, +3.50] 0
+
+8                          -0.05 pt+0.58
+
+9   M=5                   scratch 8,192/8,192 irom 492/512
+
+10  2025.2/2026.1          2024.1 
+
+    
+
+11                        Tcl 
+                          
+
+ 7.2 
+
+1 0.34  0.7
+ AFFEC  0.33­0.40
+ 
+
+2 0.79p_emotion_v
+ -f_emotion_a 0.399 vs 0.480
+ ----
+
+3RF  R2G bootstrap 0
+ 
+
+4200 MHz  RTL 
+  md5 6 
+
+5 F/G/H 126 
+ F:/FPGA P0  0 ALL PASS
+ build/*.tcl ---- guard 
+
+ 7.3 
+
+                     15
+                            
+
+~~  ~~   A9  INT8 C          A9  2.78×
+                            PL§5.4
+                            
+
+~~  ~~   DRDYEEG  GSR       
+        SRC=0xF 
+
+        S0/S1/S2/S3         
+
+        build/*.tcl         2026-10-29  M=4
+         md5                 5 /
+                             §5.8 
+                            BITSTREAM_MANIFEST.md
+
+         200 MHz            §5.4 
+         MAC  DSP  requant  200 MHz  10.40 ms A9 1.39×
+                            
+                            
+
+        mem/irom  M=5       
+
+7.4 
+
+                                       
+
+         src/rtl17 .vsrc/model10       
+/        .py
+/        sim/8                         
+/        
+ +  +    build/reports/*.rptmetrics/   
+         resource.csvmetrics/
+         timing.csv                    2026-10-29 3/
+         board/metrics/latency.csv     3  ALL PASS 21.644 ms
+skill/   metrics/cpu_baseline.csv       CPU 
+         review  JSON                  2026-10-29
+         build/make_tree.ps1 + build/  M=4  M=2 
+         *.tcl + build/README.md       .bit 
+                                        md5 M=3
+         skill/ 50 sh skill/            7,135 LUT / -0.656
+         tests/run_tests.sh            ns / 197  57 
+                                       
+                                       
+                                       
+
+                                         
+
+                       16
+                                  
+
+      PDF 17  + report/           
+     ai_collab.pdf 5 report/*.md
+MIT  python report/make_pdf.py    
+/                                 
+                                  
+     LICENSEREADME.md
+     
+
+     --
+
+
+
+ +  PYNQ-Z2 
+28  5,504  21.650 ms 10 ns  6,995 LUT
+/ 44 BRAM / 20 DSP----
+ 7 
+
+       17
+

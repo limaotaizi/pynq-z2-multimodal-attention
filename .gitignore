@@ -1,0 +1,72 @@
+# ---- Vivado / Vitis generated trees -------------------------------------
+build_*/
+.runs/
+.gen/
+.cache/
+.hw/
+.sim/
+.srcs/
+.ip_user_files/
+*.dcp
+*.xsa
+*.hdf
+*.hwh
+# ...except the one handoff file the offline skill tests parse. It is 166 KB of
+# XML describing the block design (IP, apertures, clocks) -- no bitstream, no
+# IP source, no RTL. Without it `sh skill/tests/run_tests.sh` skips its
+# handoff-parse cases, which are the ones that prove the `UM` point.
+!skill/tests/data/all_bd.hwh
+*.xpr
+*.jou
+*.log
+*.str
+*.pb
+*.wdb
+*.wcfg
+*.vcd
+.xsim.dir/
+xsim.dir/
+xsim.jou
+*.backup.jou
+*.backup.log
+webtalk*
+usage_statistics_webtalk.*
+
+# ---- build products we deliberately do not commit ----------------------
+# The shipped bitstreams are large binaries and are distributed separately;
+# BITSTREAM_MANIFEST.md records their md5 so a rebuilt one can be checked.
+*.bit
+*.bin
+*.elf
+*.o
+*.obj
+*.exe
+
+# ---- Python ------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# ---- datasets (see DATA_LICENSE.md) ------------------------------------
+# Raw AFFEC recordings are NOT redistributable. Only the derived fixed-point
+# vectors in sim/vectors/ are committed, and those are covered by LICENSE.
+data/raw/
+*.npz
+# ...except the quantised weights, which are ~1 MB of model parameters, not data
+!src/model/assets/*.npz
+
+# ---- generated at run time ---------------------------------------------
+sim/run/memdir.vh
+# board/baseline: cpu_ref_data.h + cpu_ref.elf are rebuilt by build_cpu_ref.ps1
+# from the committed sim/vectors/m4/*.mem, so only the sources are tracked.
+board/baseline/build/
+board/baseline/probe*.txt
+board/baremetal/probe*.txt
+
+# ---- editor / OS -------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp

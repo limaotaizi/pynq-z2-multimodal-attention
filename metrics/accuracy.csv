@@ -1,0 +1,78 @@
+protocol,quantity,arm,target,value,ci_low,ci_high,source,note
+80fold_seed0_pooled_oof,macro_f1,eo,p_emotion_v,0.3539,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eo,p_emotion_a,0.3477,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eo,f_emotion_v,0.3665,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eo,f_emotion_a,0.325,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eo,mean_of_4,0.3483,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eoa,p_emotion_v,0.3929,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eoa,p_emotion_a,0.3432,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eoa,f_emotion_v,0.4023,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eoa,f_emotion_a,0.346,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eoa,mean_of_4,0.3711,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eos,p_emotion_v,0.357,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eos,p_emotion_a,0.3421,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eos,f_emotion_v,0.3626,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eos,f_emotion_a,0.3334,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eos,mean_of_4,0.3488,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eoas,p_emotion_v,0.3888,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eoas,p_emotion_a,0.3464,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eoas,f_emotion_v,0.418,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eoas,f_emotion_a,0.3272,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,macro_f1,eoas,mean_of_4,0.3701,,,_数字总表.md #G,"80 folds, seed 0, threads 4, pooled out-of-fold macro-F1."
+80fold_seed0_pooled_oof,delta_macro_f1_pt,A_eos_minus_eo,mean_of_4,0.05,-0.48,0.57,_数字总表.md #G,"CI includes 0 Units are percentage points. Fold-cluster bootstrap, 20,000 resamples."
+80fold_seed0_pooled_oof,delta_macro_f1_pt,B_eoas_minus_eoa,mean_of_4,-0.1,-1.33,1.08,_数字总表.md #G,"CI includes 0 Units are percentage points. Fold-cluster bootstrap, 20,000 resamples."
+80fold_seed0_pooled_oof,delta_macro_f1_pt,C_eoa_minus_eo,mean_of_4,2.28,0.55,3.74,_数字总表.md #G,"CI excludes 0 - the only fusion effect that survives Units are percentage points. Fold-cluster bootstrap, 20,000 resamples."
+80fold_seed0_pooled_oof,delta_macro_f1_pt,D_eoas_minus_eos,mean_of_4,2.13,-0.09,4.36,_数字总表.md #G,"CI includes 0, borderline Units are percentage points. Fold-cluster bootstrap, 20,000 resamples."
+80fold_seed0_pooled_oof,delta_macro_f1_pt,interaction_B_minus_A,mean_of_4,-0.15,-1.82,1.42,_数字总表.md #G,"CI includes 0 at the 4-target aggregate level only Units are percentage points. Fold-cluster bootstrap, 20,000 resamples."
+80fold_seed0_pooled_oof,delta_macro_f1_pt,AU_main_effect,mean_of_4,2.21,0.36,4.05,_数字总表.md #G,"descriptive; task-clustered CI, superseded by the subject bootstrap row Units are percentage points. Fold-cluster bootstrap, 20,000 resamples."
+80fold_seed0_pooled_oof,delta_macro_f1_pt,GSR_main_effect,mean_of_4,-0.03,-0.4,0.41,_数字总表.md #G,"CI includes 0 Units are percentage points. Fold-cluster bootstrap, 20,000 resamples."
+80fold_seed0_pooled_oof,delta_macro_f1_pt,C,mean_of_4,2.28,1.19,3.37,_数字总表.md #H,"C: 3/3 seeds exclude 0, range 0.19 pt. S (adding GSR): sign flips, seed-dependent. N (drop EEG): same sign but 0/3 exclude 0. Seeds share folds, so intervals must not be pooled."
+80fold_seed1_pooled_oof,delta_macro_f1_pt,C,mean_of_4,2.3,0.99,3.6,_数字总表.md #H,"C: 3/3 seeds exclude 0, range 0.19 pt. S (adding GSR): sign flips, seed-dependent. N (drop EEG): same sign but 0/3 exclude 0. Seeds share folds, so intervals must not be pooled."
+80fold_seed2_pooled_oof,delta_macro_f1_pt,C,mean_of_4,2.1,0.75,3.45,_数字总表.md #H,"C: 3/3 seeds exclude 0, range 0.19 pt. S (adding GSR): sign flips, seed-dependent. N (drop EEG): same sign but 0/3 exclude 0. Seeds share folds, so intervals must not be pooled."
+80fold_seed0_pooled_oof,delta_macro_f1_pt,S,mean_of_4,0.01,,,_数字总表.md #H,"C: 3/3 seeds exclude 0, range 0.19 pt. S (adding GSR): sign flips, seed-dependent. N (drop EEG): same sign but 0/3 exclude 0. Seeds share folds, so intervals must not be pooled."
+80fold_seed1_pooled_oof,delta_macro_f1_pt,S,mean_of_4,-0.44,,,_数字总表.md #H,"C: 3/3 seeds exclude 0, range 0.19 pt. S (adding GSR): sign flips, seed-dependent. N (drop EEG): same sign but 0/3 exclude 0. Seeds share folds, so intervals must not be pooled."
+80fold_seed2_pooled_oof,delta_macro_f1_pt,S,mean_of_4,1.24,,,_数字总表.md #H,"C: 3/3 seeds exclude 0, range 0.19 pt. S (adding GSR): sign flips, seed-dependent. N (drop EEG): same sign but 0/3 exclude 0. Seeds share folds, so intervals must not be pooled."
+80fold_seed0_pooled_oof,delta_macro_f1_pt,N,mean_of_4,1.09,,,_数字总表.md #H,"C: 3/3 seeds exclude 0, range 0.19 pt. S (adding GSR): sign flips, seed-dependent. N (drop EEG): same sign but 0/3 exclude 0. Seeds share folds, so intervals must not be pooled."
+80fold_seed1_pooled_oof,delta_macro_f1_pt,N,mean_of_4,1.2,,,_数字总表.md #H,"C: 3/3 seeds exclude 0, range 0.19 pt. S (adding GSR): sign flips, seed-dependent. N (drop EEG): same sign but 0/3 exclude 0. Seeds share folds, so intervals must not be pooled."
+80fold_seed2_pooled_oof,delta_macro_f1_pt,N,mean_of_4,0.46,,,_数字总表.md #H,"C: 3/3 seeds exclude 0, range 0.19 pt. S (adding GSR): sign flips, seed-dependent. N (drop EEG): same sign but 0/3 exclude 0. Seeds share folds, so intervals must not be pooled."
+subject_bootstrap_64,delta_macro_f1_pt,AU_main_effect,mean_of_4,2.287,1.466,3.122,review_20261028/subject_bootstrap.json,"20000 paired held-out-subject resamples, seed 20261028. Pooled OOF, equal weight over 4 targets. Different estimand from the fold-mean figures in the rows above - both are +2.28-like for C but they are NOT interchangeable."
+subject_bootstrap_64,delta_macro_f1_pt,GSR_main_effect,mean_of_4,-0.087,-0.858,0.702,review_20261028/subject_bootstrap.json,"20000 paired held-out-subject resamples, seed 20261028. Pooled OOF, equal weight over 4 targets. Different estimand from the fold-mean figures in the rows above - both are +2.28-like for C but they are NOT interchangeable."
+subject_bootstrap_64,delta_macro_f1_pt,interaction_B_minus_A,mean_of_4,-0.327,-1.733,1.066,review_20261028/subject_bootstrap.json,"20000 paired held-out-subject resamples, seed 20261028. Pooled OOF, equal weight over 4 targets. Different estimand from the fold-mean figures in the rows above - both are +2.28-like for C but they are NOT interchangeable."
+subject_bootstrap_64,delta_macro_f1_pt,C_eoa_minus_eo,mean_of_4,2.451,1.506,3.405,review_20261028/subject_bootstrap.json,"20000 paired held-out-subject resamples, seed 20261028. Pooled OOF, equal weight over 4 targets. Different estimand from the fold-mean figures in the rows above - both are +2.28-like for C but they are NOT interchangeable."
+subject_bootstrap_64,delta_macro_f1_pt,B_eoas_minus_eoa,mean_of_4,-0.251,-1.271,0.773,review_20261028/subject_bootstrap.json,"20000 paired held-out-subject resamples, seed 20261028. Pooled OOF, equal weight over 4 targets. Different estimand from the fold-mean figures in the rows above - both are +2.28-like for C but they are NOT interchangeable."
+deployed_m4_single_fold,macro_f1,float_model,p_emotion_v,0.36811,,,review_20261028/deployed_m4_quantization.json,"float32 checkpoint, same test split n_test=1016, one fold and one target only."
+deployed_m4_single_fold,macro_f1,weight_int8_software,p_emotion_v,0.37003,,,review_20261028/deployed_m4_quantization.json,"weights quantised, arithmetic still software n_test=1016, one fold and one target only."
+deployed_m4_single_fold,macro_f1,hardware_arithmetic,p_emotion_v,0.36695,,,review_20261028/deployed_m4_quantization.json,"the exact fixed-point arithmetic the PL implements n_test=1016, one fold and one target only."
+deployed_m4_single_fold,float_vs_fixed_agreement,float_vs_hw,p_emotion_v,0.99606,,,review_20261028/deployed_m4_quantization.json,"Fraction of the 1,016 test trials where the float and hardware-arithmetic predictions agree."
+deployed_m4_single_fold,input_saturation_count,Ze,p_emotion_v,0,,,review_20261028/deployed_m4_quantization.json,Out of 1259840 elements. Zero saturation on all four modalities.
+deployed_m4_single_fold,input_saturation_count,Zo,p_emotion_v,0,,,review_20261028/deployed_m4_quantization.json,Out of 97536 elements. Zero saturation on all four modalities.
+deployed_m4_single_fold,input_saturation_count,Za,p_emotion_v,0,,,review_20261028/deployed_m4_quantization.json,Out of 207264 elements. Zero saturation on all four modalities.
+deployed_m4_single_fold,input_saturation_count,Zs,p_emotion_v,0,,,review_20261028/deployed_m4_quantization.json,Out of 97536 elements. Zero saturation on all four modalities.
+stimulus_disjoint,macro_f1,video_majority_allowed,p_emotion_v,0.7909,,,review_20261028/stimulus_controls.json,n=4921
+stimulus_disjoint,macro_f1,rf_stimulus_disjoint,p_emotion_v,0.3782,,,review_20261028/stimulus_controls.json,Random forest on 2-trial-calibrated features.
+stimulus_disjoint,macro_f1,global_majority_floor,p_emotion_v,0.212,,,review_20261028/stimulus_controls.json,"Chance-ish floor, not 0.5."
+stimulus_disjoint,macro_f1,video_majority_allowed,p_emotion_a,0.5962,,,review_20261028/stimulus_controls.json,n=4921
+stimulus_disjoint,macro_f1,rf_stimulus_disjoint,p_emotion_a,0.4395,,,review_20261028/stimulus_controls.json,Random forest on 2-trial-calibrated features.
+stimulus_disjoint,macro_f1,global_majority_floor,p_emotion_a,0.2004,,,review_20261028/stimulus_controls.json,"Chance-ish floor, not 0.5."
+stimulus_disjoint,macro_f1,video_majority_allowed,f_emotion_v,0.5595,,,review_20261028/stimulus_controls.json,n=4921
+stimulus_disjoint,macro_f1,rf_stimulus_disjoint,f_emotion_v,0.4526,,,review_20261028/stimulus_controls.json,Random forest on 2-trial-calibrated features.
+stimulus_disjoint,macro_f1,global_majority_floor,f_emotion_v,0.2483,,,review_20261028/stimulus_controls.json,"Chance-ish floor, not 0.5."
+stimulus_disjoint,macro_f1,video_majority_allowed,f_emotion_a,0.399,,,review_20261028/stimulus_controls.json,n=4921
+stimulus_disjoint,macro_f1,rf_stimulus_disjoint,f_emotion_a,0.4804,,,review_20261028/stimulus_controls.json,Random forest on 2-trial-calibrated features.
+stimulus_disjoint,macro_f1,global_majority_floor,f_emotion_a,0.2271,,,review_20261028/stimulus_controls.json,"Chance-ish floor, not 0.5."
+rf_train_global,macro_f1,rf,p_emotion_v,0.3539,,,review_20261028/rf_protocol_result.json,"n_test=4921, 128 calibration trials excluded."
+rf_calibration_2_trials,macro_f1,rf,p_emotion_v,0.364,,,review_20261028/rf_protocol_result.json,"n_test=4921, 128 calibration trials excluded."
+rf_train_global,macro_f1,rf,p_emotion_a,0.3415,,,review_20261028/rf_protocol_result.json,"n_test=4921, 128 calibration trials excluded."
+rf_calibration_2_trials,macro_f1,rf,p_emotion_a,0.3334,,,review_20261028/rf_protocol_result.json,"n_test=4921, 128 calibration trials excluded."
+rf_train_global,macro_f1,rf,f_emotion_v,0.3352,,,review_20261028/rf_protocol_result.json,"n_test=4921, 128 calibration trials excluded."
+rf_calibration_2_trials,macro_f1,rf,f_emotion_v,0.341,,,review_20261028/rf_protocol_result.json,"n_test=4921, 128 calibration trials excluded."
+rf_train_global,macro_f1,rf,f_emotion_a,0.3018,,,review_20261028/rf_protocol_result.json,"n_test=4921, 128 calibration trials excluded."
+rf_calibration_2_trials,macro_f1,rf,f_emotion_a,0.3246,,,review_20261028/rf_protocol_result.json,"n_test=4921, 128 calibration trials excluded."
+rf_subject_bootstrap_64,delta_macro_f1_pt,calibration_minus_global,mean_of_4,0.769,-0.91,2.514,review_20261028/rf_subject_bootstrap.json,Four-task aggregate. CI includes 0: no uniform benefit from two-trial recalibration.
+rf_subject_bootstrap_64,delta_macro_f1_pt,calibration_minus_global,p_emotion_v,1.015,-1.123,3.178,review_20261028/rf_subject_bootstrap.json,"20000 paired subject resamples, seed 20261029."
+rf_subject_bootstrap_64,delta_macro_f1_pt,calibration_minus_global,p_emotion_a,-0.808,-3.184,1.561,review_20261028/rf_subject_bootstrap.json,"20000 paired subject resamples, seed 20261029."
+rf_subject_bootstrap_64,delta_macro_f1_pt,calibration_minus_global,f_emotion_v,0.583,-2.142,3.29,review_20261028/rf_subject_bootstrap.json,"20000 paired subject resamples, seed 20261029."
+rf_subject_bootstrap_64,delta_macro_f1_pt,calibration_minus_global,f_emotion_a,2.286,-2.804,7.481,review_20261028/rf_subject_bootstrap.json,"20000 paired subject resamples, seed 20261029."
+r2g_train_global,macro_f1,r2g,p_emotion_v,0.3695,,,review_20261028/r2g_protocol_results.json,"n=4921, one seed, primary target only. Not comparable to the 200-epoch patience-100 protocol."
+r2g_calibration_2_trials,macro_f1,r2g,p_emotion_v,0.3778,,,review_20261028/r2g_protocol_results.json,"n=4921, one seed, primary target only. Not comparable to the 200-epoch patience-100 protocol."
+r2g_subject_bootstrap_64,delta_macro_f1_pt,calibration_minus_global,p_emotion_v,0.828,-1.699,3.496,review_20261028/r2g_subject_bootstrap.json,CI includes 0: no uniform benefit from two-trial recalibration was observed.

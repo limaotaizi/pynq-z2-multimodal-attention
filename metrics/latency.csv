@@ -1,0 +1,5 @@
+mode,cycles,cycles_ms_at_100mhz,board_engine_ms,board_protocol,e2e_ms,e2e_breakdown_ms,bitstream,source
+M2,466157,4.662,"4.686 / 4.717 / 4.742",hosted_python_3_runs,,,,attn2_e4.bit. d9fd5e45; _M2带ε位流_20261028.md
+M3,1124691,11.247,11.33,hosted_python,,,,attn3_e4.bit a607316a; m3-board-bit-exact
+M4,2079001,20.790,"20.89 (reproduced 20.88 on 2026-10-28)",hosted_python,36.48,"load 8.41 + engine 20.88 + head readback 6.72 (sums to 36.01; remaining 0.47 not itemised in source)",attn4_e4.bit 1e255557; m4-synth-and-bitexact
+M4,2079001,20.790,20.790,bare_metal,21.650,"load 1,636 words 0.189 + engine 20.790 + readback 1,024 words 0.113 + PS head 0.555 (D-cache warm)",attn4_e4.bit 1e255557 + BOOT.BIN 93f8caee; _pl/baremetal/bm_jtag_t.txt / bm_cold_r.txt

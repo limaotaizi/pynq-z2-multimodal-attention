@@ -1,0 +1,4 @@
+mode,slice_luts,lut_pct,slice_registers,ff_pct,block_ram_tiles,ramb36,ramb18,bram_pct,dsp48e1,dsp_pct,design_state,device,report_file
+M2,6649,12.50,9537,8.96,44,42,4,31.43,20,9.09,Routed,xc7z020clg400-1,build_bd_all/util_m2_e4.rpt
+M3,7135,13.41,9559,8.98,44,42,4,31.43,20,9.09,Routed,xc7z020clg400-1,build_bd_all/util_m3.rpt
+M4,6995,13.15,9566,8.99,44,42,4,31.43,20,9.09,Routed,xc7z020clg400-1,build_bd_all/util_m4.rpt

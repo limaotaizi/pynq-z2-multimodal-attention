@@ -1,0 +1,638 @@
+### ROUND 1 ###
+
+-- run 1 window: load 1636 words, start, poll --
+  engine 20.79 ms  = 2079000 cycles @ 100.00 MHz   (M=4 expects 2079001 / 20.79 ms)
+  [ok  ] he   1024/1024
+  [ok  ] zpe   256/ 256
+  [ok  ] zpo   256/ 256
+  [ok  ] zpa   256/ 256
+  [ok  ] zps   256/ 256
+  [ok  ] hre  1024/1024
+  [ok  ] hro    64/  64
+  [ok  ] hra    64/  64
+  [ok  ] hrs    64/  64
+  [ok  ] ho     64/  64
+  [ok  ] ha     64/  64
+  [ok  ] hs     64/  64
+  [ok  ] qe     64/  64
+  [ok  ] ke    192/ 192
+  [ok  ] ve    192/ 192
+  [ok  ] qo     64/  64
+  [ok  ] ko    192/ 192
+  [ok  ] vo    192/ 192
+  [ok  ] qa     64/  64
+  [ok  ] ka    192/ 192
+  [ok  ] va    192/ 192
+  [ok  ] qs     64/  64
+  [ok  ] ks    192/ 192
+  [ok  ] vs    192/ 192
+  [ok  ] z0e    64/  64
+  [ok  ] z0o    64/  64
+  [ok  ] z0a    64/  64
+  [ok  ] z0s    64/  64
+  ----------------------------------------------
+  TOTAL 5504/5504 words, 28 arrays  =>  ALL PASS
+  HEAD logits +0.597 +0.455 -1.249   prob  49.36%  42.84%   7.79%   class 0
+  HEAD 0.557 ms on the A9 (pure C, no host; act = 472 e-6)
+  HEAD vs Python reference: max|dlogit| = 0.000 (tol 0.001)  OK
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.190 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.553 ms
+  ------------------------------------------
+  one window on the A9       21.649 ms   (class 0)
+
+### ROUND 2 ###
+
+-- run 1 window: load 1636 words, start, poll --
+  engine 20.79 ms  = 2079000 cycles @ 100.00 MHz   (M=4 expects 2079001 / 20.79 ms)
+  [ok  ] he   1024/1024
+  [ok  ] zpe   256/ 256
+  [ok  ] zpo   256/ 256
+  [ok  ] zpa   256/ 256
+  [ok  ] zps   256/ 256
+  [ok  ] hre  1024/1024
+  [ok  ] hro    64/  64
+  [ok  ] hra    64/  64
+  [ok  ] hrs    64/  64
+  [ok  ] ho     64/  64
+  [ok  ] ha     64/  64
+  [ok  ] hs     64/  64
+  [ok  ] qe     64/  64
+  [ok  ] ke    192/ 192
+  [ok  ] ve    192/ 192
+  [ok  ] qo     64/  64
+  [ok  ] ko    192/ 192
+  [ok  ] vo    192/ 192
+  [ok  ] qa     64/  64
+  [ok  ] ka    192/ 192
+  [ok  ] va    192/ 192
+  [ok  ] qs     64/  64
+  [ok  ] ks    192/ 192
+  [ok  ] vs    192/ 192
+  [ok  ] z0e    64/  64
+  [ok  ] z0o    64/  64
+  [ok  ] z0a    64/  64
+  [ok  ] z0s    64/  64
+  ----------------------------------------------
+  TOTAL 5504/5504 words, 28 arrays  =>  ALL PASS
+  HEAD logits +0.597 +0.455 -1.249   prob  49.36%  42.84%   7.79%   class 0
+  HEAD 0.557 ms on the A9 (pure C, no host; act = 472 e-6)
+  HEAD vs Python reference: max|dlogit| = 0.000 (tol 0.001)  OK
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.190 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.554 ms
+  ------------------------------------------
+  one window on the A9       21.649 ms   (class 0)
+
+### ROUND 3 ###
+
+-- run 1 window: load 1636 words, start, poll --
+  engine 20.79 ms  = 2079000 cycles @ 100.00 MHz   (M=4 expects 2079001 / 20.79 ms)
+  [ok  ] he   1024/1024
+  [ok  ] zpe   256/ 256
+  [ok  ] zpo   256/ 256
+  [ok  ] zpa   256/ 256
+  [ok  ] zps   256/ 256
+  [ok  ] hre  1024/1024
+  [ok  ] hro    64/  64
+  [ok  ] hra    64/  64
+  [ok  ] hrs    64/  64
+  [ok  ] ho     64/  64
+  [ok  ] ha     64/  64
+  [ok  ] hs     64/  64
+  [ok  ] qe     64/  64
+  [ok  ] ke    192/ 192
+  [ok  ] ve    192/ 192
+  [ok  ] qo     64/  64
+  [ok  ] ko    192/ 192
+  [ok  ] vo    192/ 192
+  [ok  ] qa     64/  64
+  [ok  ] ka    192/ 192
+  [ok  ] va    192/ 192
+  [ok  ] qs     64/  64
+  [ok  ] ks    192/ 192
+  [ok  ] vs    192/ 192
+  [ok  ] z0e    64/  64
+  [ok  ] z0o    64/  64
+  [ok  ] z0a    64/  64
+  [ok  ] z0s    64/  64
+  ----------------------------------------------
+  TOTAL 5504/5504 words, 28 arrays  =>  ALL PASS
+  HEAD logits +0.597 +0.455 -1.249   prob  49.36%  42.84%   7.79%   class 0
+  HEAD 0.557 ms on the A9 (pure C, no host; act = 472 e-6)
+  HEAD vs Python reference: max|dlogit| = 0.000 (tol 0.001)  OK
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.190 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.554 ms
+  ------------------------------------------
+  one window on the A9       21.649 ms   (class 0)
+
+### TIMING 1 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.552 ms
+  ------------------------------------------
+  one window on the A9       21.646 ms   (class 0)
+
+### TIMING 2 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.551 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 3 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.551 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 4 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 5 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.551 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 6 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 7 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 8 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 9 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 10 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 11 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 12 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 13 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 14 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 15 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 16 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 17 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 18 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 19 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 20 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 21 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 22 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 23 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.551 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 24 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 25 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 26 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 27 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 28 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 29 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 30 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 31 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 32 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 33 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 34 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 35 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 36 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 37 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 38 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 39 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 40 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 41 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 42 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 43 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 44 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.551 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 45 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.189 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 46 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 47 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 48 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+
+### TIMING 49 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.645 ms   (class 0)
+
+### TIMING 50 ###
+
+-- window latency: production path only (no readback check) --
+  load    1636 words (AXI)   0.188 ms
+  engine                     20.790 ms
+  read Zp 1024 words (AXI)   0.113 ms
+  head -> 3 classes          0.550 ms
+  ------------------------------------------
+  one window on the A9       21.644 ms   (class 0)
+

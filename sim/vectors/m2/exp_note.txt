@@ -1,0 +1,3 @@
+mode=m2 mods=e,o
+ze=0.0009765625 zo=0.0009765625 act=0.00115627526 logit=0.00473665326
+wbytes=29984 nblocks=115 nins=182 scratch=5376

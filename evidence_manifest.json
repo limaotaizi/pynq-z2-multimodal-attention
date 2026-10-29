@@ -1,0 +1,588 @@
+{
+  "generated": "2026-10-29",
+  "generator": "metrics/make_evidence_manifest.py",
+  "scope": "one entry per row of metrics/metrics.csv; each names the file the number came from",
+  "how_to_verify": "Recompute md5 of a cited file and compare with the value here. A row with status 'missing' is a claim without shipped evidence; 'present_but_not_shipped' is a file on the author's disk that .gitignore keeps out of the repository.",
+  "git_tracked_files_seen": 272,
+  "summary": {
+    "claims": 32,
+    "evidence_references": 30,
+    "tracked": 30,
+    "present_but_not_shipped": 0,
+    "missing": 0,
+    "claims_with_gaps": 0
+  },
+  "claims_with_gaps": [],
+  "claims": [
+    {
+      "id": "L1",
+      "category": "latency",
+      "claim": "attention engine M=2 466157",
+      "value": "",
+      "unit": "cycles",
+      "protocol": "simulation cycle count",
+      "limitation": "cycle count of the PL engine only; excludes data load and readback",
+      "evidence": [
+        {
+          "path": "sim/run/run_attn_m2.sh",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 123,
+          "md5": "da10900f72f7aa2dd8067056f7f6de57"
+        }
+      ]
+    },
+    {
+      "id": "L2",
+      "category": "latency",
+      "claim": "attention engine M=2 at 100 MHz",
+      "value": "4.662",
+      "unit": "ms",
+      "protocol": "cycles/1e8",
+      "limitation": "derived from simulation cycles not from a stopwatch",
+      "evidence": [
+        {
+          "path": "metrics/latency.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 760,
+          "md5": "cc91b96fcf9cbbdd395b63cf10ffab94"
+        }
+      ]
+    },
+    {
+      "id": "L3",
+      "category": "latency",
+      "claim": "attention engine M=3 1124691",
+      "value": "",
+      "unit": "cycles",
+      "protocol": "simulation cycle count",
+      "limitation": "same",
+      "evidence": [
+        {
+          "path": "sim/run/run_attn_m3.sh",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 123,
+          "md5": "7c27e0d88550f5dda56f5b5fa5551ace"
+        }
+      ]
+    },
+    {
+      "id": "L4",
+      "category": "latency",
+      "claim": "attention engine M=3 at 100 MHz",
+      "value": "11.247",
+      "unit": "ms",
+      "protocol": "cycles/1e8",
+      "limitation": "board reading is 11.33 (0.7% higher: host polling granularity)",
+      "evidence": [
+        {
+          "path": "metrics/latency.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 760,
+          "md5": "cc91b96fcf9cbbdd395b63cf10ffab94"
+        }
+      ]
+    },
+    {
+      "id": "L5",
+      "category": "latency",
+      "claim": "attention engine M=4 2079001",
+      "value": "",
+      "unit": "cycles",
+      "protocol": "simulation cycle count",
+      "limitation": "same",
+      "evidence": [
+        {
+          "path": "sim/run/run_attn_m4.sh",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 123,
+          "md5": "7f275ec044d1b245de4cbad00e981886"
+        }
+      ]
+    },
+    {
+      "id": "L6",
+      "category": "latency",
+      "claim": "attention engine M=4 at 100 MHz",
+      "value": "20.790",
+      "unit": "ms",
+      "protocol": "cycles/1e8",
+      "limitation": "board hosted reading 20.89; bare-metal reading exactly 20.790",
+      "evidence": [
+        {
+          "path": "metrics/latency.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 760,
+          "md5": "cc91b96fcf9cbbdd395b63cf10ffab94"
+        }
+      ]
+    },
+    {
+      "id": "L7",
+      "category": "latency",
+      "claim": "one window end to end bare metal",
+      "value": "21.650",
+      "unit": "ms",
+      "protocol": "register polling on the A9 no host",
+      "limitation": "four measured segments 0.189+20.790+0.113+0.555; does not include the 5504-word acceptance readback",
+      "evidence": [
+        {
+          "path": "metrics/latency.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 760,
+          "md5": "cc91b96fcf9cbbdd395b63cf10ffab94"
+        }
+      ]
+    },
+    {
+      "id": "L8",
+      "category": "latency",
+      "claim": "one window end to end with a Python host",
+      "value": "36.48",
+      "unit": "ms",
+      "protocol": "PYNQ JTAG + Python",
+      "limitation": "43.0% of this is host-side transfer; components sum to 36.01 and the last 0.47 ms is not itemised",
+      "evidence": [
+        {
+          "path": "metrics/latency.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 760,
+          "md5": "cc91b96fcf9cbbdd395b63cf10ffab94"
+        }
+      ]
+    },
+    {
+      "id": "L9",
+      "category": "latency",
+      "claim": "share of a 4 s window bare metal",
+      "value": "0.54",
+      "unit": "percent",
+      "protocol": "21.650/4000",
+      "limitation": "one window per 4 s trial; does not account for acquisition",
+      "evidence": [
+        {
+          "path": "metrics/latency.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 760,
+          "md5": "cc91b96fcf9cbbdd395b63cf10ffab94"
+        }
+      ]
+    },
+    {
+      "id": "R1",
+      "category": "resource",
+      "claim": "slice LUTs M=4 whole BD",
+      "value": "6995",
+      "unit": "count",
+      "protocol": "Vivado report_utilization Routed",
+      "limitation": "13.15% of 53200; whole design not the attention module alone",
+      "evidence": [
+        {
+          "path": "metrics/resource.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 419,
+          "md5": "b24d25525899f8b433ec31510c3dd7dc"
+        }
+      ]
+    },
+    {
+      "id": "R2",
+      "category": "resource",
+      "claim": "slice registers M=4 whole BD",
+      "value": "9566",
+      "unit": "count",
+      "protocol": "Vivado report_utilization Routed",
+      "limitation": "8.99%",
+      "evidence": [
+        {
+          "path": "metrics/resource.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 419,
+          "md5": "b24d25525899f8b433ec31510c3dd7dc"
+        }
+      ]
+    },
+    {
+      "id": "R3",
+      "category": "resource",
+      "claim": "block RAM tiles M=4 whole BD",
+      "value": "44",
+      "unit": "tiles",
+      "protocol": "Vivado report_utilization Routed",
+      "limitation": "31.43% of 140; 42 RAMB36 + 4 RAMB18",
+      "evidence": [
+        {
+          "path": "metrics/resource.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 419,
+          "md5": "b24d25525899f8b433ec31510c3dd7dc"
+        }
+      ]
+    },
+    {
+      "id": "R4",
+      "category": "resource",
+      "claim": "DSP48E1 M=4 whole BD",
+      "value": "20",
+      "unit": "count",
+      "protocol": "Vivado report_utilization Routed",
+      "limitation": "9.09%",
+      "evidence": [
+        {
+          "path": "metrics/resource.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 419,
+          "md5": "b24d25525899f8b433ec31510c3dd7dc"
+        }
+      ]
+    },
+    {
+      "id": "R5",
+      "category": "resource",
+      "claim": "weight ROM M=4",
+      "value": "54.5",
+      "unit": "KB",
+      "protocol": "board INT8 measurement",
+      "limitation": "this is the weight storage only not the total BRAM (44 tiles is ~198 KB)",
+      "evidence": [
+        {
+          "path": "metrics/resource.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 419,
+          "md5": "b24d25525899f8b433ec31510c3dd7dc"
+        }
+      ]
+    },
+    {
+      "id": "T1",
+      "category": "timing",
+      "claim": "worst setup slack at the 200 MHz constraint M=4",
+      "value": "-0.736",
+      "unit": "ns",
+      "protocol": "Vivado report_timing Routed",
+      "limitation": "constraint not met; 274 of 25366 endpoints; the design is NOT operated at 200 MHz",
+      "evidence": [
+        {
+          "path": "metrics/timing.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 2477,
+          "md5": "cb2334d02af0fa8f227d6c4a4ec9ce25"
+        }
+      ]
+    },
+    {
+      "id": "T2",
+      "category": "timing",
+      "claim": "worst setup slack at the 100 MHz operating point M=4",
+      "value": "4.264",
+      "unit": "ns",
+      "protocol": "re-report at period 10 ns",
+      "limitation": "this is the signoff point; delivered bitstreams are all 100 MHz",
+      "evidence": [
+        {
+          "path": "metrics/timing.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 2477,
+          "md5": "cb2334d02af0fa8f227d6c4a4ec9ce25"
+        }
+      ]
+    },
+    {
+      "id": "T3",
+      "category": "timing",
+      "claim": "worst hold slack M=4",
+      "value": "0.037",
+      "unit": "ns",
+      "protocol": "Vivado report_timing Routed",
+      "limitation": "0 failing endpoints",
+      "evidence": [
+        {
+          "path": "metrics/timing.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 2477,
+          "md5": "cb2334d02af0fa8f227d6c4a4ec9ce25"
+        }
+      ]
+    },
+    {
+      "id": "V1",
+      "category": "verification",
+      "claim": "bit exact arrays M=4",
+      "value": "28",
+      "unit": "arrays",
+      "protocol": "simulated vs fixpt.py",
+      "limitation": "5504 words; also verified on the board and via bare metal",
+      "evidence": [
+        {
+          "path": "sim/run/run_attn_m4.sh",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 123,
+          "md5": "7f275ec044d1b245de4cbad00e981886"
+        }
+      ]
+    },
+    {
+      "id": "V2",
+      "category": "verification",
+      "claim": "bit exact words M=4",
+      "value": "5504",
+      "unit": "words",
+      "protocol": "simulated vs fixpt.py",
+      "limitation": "same",
+      "evidence": [
+        {
+          "path": "sim/run/run_attn_m4.sh",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 123,
+          "md5": "7f275ec044d1b245de4cbad00e981886"
+        }
+      ]
+    },
+    {
+      "id": "V3",
+      "category": "verification",
+      "claim": "bit exact repeatability on the board",
+      "value": "3",
+      "unit": "repeats",
+      "protocol": "3 x 28 arrays x 5504 words bare metal",
+      "limitation": "identical fixed input each time; not a worst-case proof",
+      "evidence": [
+        {
+          "path": "board/repeat.json",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 3576,
+          "md5": "f98c9adf8030305e1b941efccf0f1361"
+        }
+      ]
+    },
+    {
+      "id": "V4",
+      "category": "verification",
+      "claim": "float vs hardware arithmetic agreement",
+      "value": "99.61",
+      "unit": "percent",
+      "protocol": "1016 test trials one fold one target",
+      "limitation": "weight int8 F1 is 0.37003 vs float 0.36811 so quantisation did not cost accuracy here",
+      "evidence": [
+        {
+          "path": "metrics/accuracy.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 14384,
+          "md5": "e40e02fc30b51eeb7f620c59d3541204"
+        }
+      ]
+    },
+    {
+      "id": "A1",
+      "category": "accuracy",
+      "claim": "deployed hardware arithmetic macro-F1",
+      "value": "0.36695",
+      "unit": "F1",
+      "protocol": "1016 test trials one fold one target",
+      "limitation": "chance is 0.333; this is barely above chance",
+      "evidence": [
+        {
+          "path": "metrics/accuracy.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 14384,
+          "md5": "e40e02fc30b51eeb7f620c59d3541204"
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "category": "accuracy",
+      "claim": "adding the AU modality",
+      "value": "2.28",
+      "unit": "percentage points",
+      "protocol": "80 folds seed 0 pooled",
+      "limitation": "3 seeds 3/3 exclude zero; subject bootstrap +1.47 to +3.12",
+      "evidence": [
+        {
+          "path": "metrics/accuracy.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 14384,
+          "md5": "e40e02fc30b51eeb7f620c59d3541204"
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "category": "accuracy",
+      "claim": "quad modality minus tri modality",
+      "value": "-0.10",
+      "unit": "percentage points",
+      "protocol": "80 folds seed 0 pooled",
+      "limitation": "CI includes zero: the fourth modality costs latency and buys nothing",
+      "evidence": [
+        {
+          "path": "metrics/accuracy.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 14384,
+          "md5": "e40e02fc30b51eeb7f620c59d3541204"
+        }
+      ]
+    },
+    {
+      "id": "A4",
+      "category": "accuracy",
+      "claim": "online two-trial recalibration RF",
+      "value": "0.77",
+      "unit": "percentage points",
+      "protocol": "subject bootstrap 64",
+      "limitation": "CI includes zero: no uniform benefit observed",
+      "evidence": [
+        {
+          "path": "metrics/accuracy.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 14384,
+          "md5": "e40e02fc30b51eeb7f620c59d3541204"
+        }
+      ]
+    },
+    {
+      "id": "A5",
+      "category": "accuracy",
+      "claim": "online two-trial recalibration R2G",
+      "value": "0.83",
+      "unit": "percentage points",
+      "protocol": "subject bootstrap 64",
+      "limitation": "CI includes zero: no uniform benefit observed",
+      "evidence": [
+        {
+          "path": "metrics/accuracy.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 14384,
+          "md5": "e40e02fc30b51eeb7f620c59d3541204"
+        }
+      ]
+    },
+    {
+      "id": "A6",
+      "category": "accuracy",
+      "claim": "time delta injection psi(dt eps)",
+      "value": "-0.05",
+      "unit": "percentage points",
+      "protocol": "4 targets x 5 folds",
+      "limitation": "mechanism is traceable and nearly free but buys no accuracy on this dataset",
+      "evidence": [
+        {
+          "path": "metrics/accuracy.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 14384,
+          "md5": "e40e02fc30b51eeb7f620c59d3541204"
+        }
+      ]
+    },
+    {
+      "id": "B1",
+      "category": "baseline",
+      "claim": "same-board CPU time for the attention engine",
+      "value": "7.470",
+      "unit": "ms",
+      "protocol": "A9 C interpreter of the same instruction stream",
+      "limitation": "bit-exact 22/22 blocks; median of 5; A9 is 2.78x FASTER than the PL (adverse result)",
+      "evidence": [
+        {
+          "path": "metrics/cpu_baseline.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 2240,
+          "md5": "15106523cb997aaa926ff168dd41d197"
+        }
+      ]
+    },
+    {
+      "id": "B2",
+      "category": "baseline",
+      "claim": "same-board CPU time for the classification head",
+      "value": "0.242",
+      "unit": "ms",
+      "protocol": "A9 C",
+      "limitation": "secondary citation; PL compute 0.167 ms but 1.004 ms once transfer is counted",
+      "evidence": [
+        {
+          "path": "metrics/cpu_baseline.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 2240,
+          "md5": "15106523cb997aaa926ff168dd41d197"
+        }
+      ]
+    },
+    {
+      "id": "X1",
+      "category": "not_measured",
+      "claim": "power",
+      "value": "NOT MEASURED",
+      "unit": "W",
+      "protocol": "",
+      "limitation": "no meter and no PMBus on this board; do not infer from resources",
+      "evidence": []
+    },
+    {
+      "id": "X2",
+      "category": "not_measured",
+      "claim": "four-sensor synchronisation",
+      "value": "NOT ESTABLISHED",
+      "unit": "",
+      "protocol": "",
+      "limitation": "no external reference was ever connected; the timestamp core runs from an internal strobe SRC=0xF",
+      "evidence": [
+        {
+          "path": "metrics/timing.csv",
+          "status": "tracked",
+          "kind": "file",
+          "bytes": 2477,
+          "md5": "cb2334d02af0fa8f227d6c4a4ec9ce25"
+        }
+      ]
+    },
+    {
+      "id": "X3",
+      "category": "not_measured",
+      "claim": "real sensors acquisition",
+      "value": "",
+      "unit": "NOT ESTABLISHED",
+      "protocol": "",
+      "limitation": "vectors are replayed from AFFEC recordings not acquired live",
+      "evidence": []
+    }
+  ],
+  "shipped_separately": {
+    "note": "not in git by design, see BITSTREAM_MANIFEST.md",
+    "files": {
+      "attn4_e4.bit": "1e2555571c380d8fbaa2324141023e6f",
+      "attn3_e4.bit": "a607316a7041fdb9798c139bff430a6c",
+      "attn2_e4.bit": "d9fd5e4565f20f931e51df18aa89da48",
+      "ts_e4.bit": "4fa3518fcb61ad5d91d8379001909806",
+      "BOOT.BIN": "93f8caee4a2e4b365622cfa0dee230d2"
+    }
+  }
+}

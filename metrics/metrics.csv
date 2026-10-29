@@ -1,0 +1,33 @@
+id,category,claim,value,unit,protocol,evidence,limitation
+L1,latency,attention engine M=2 466157,cycles,simulation cycle count,sim/run/run_attn_m2.sh,cycle count of the PL engine only; excludes data load and readback
+L2,latency,attention engine M=2 at 100 MHz,4.662,ms,cycles/1e8,metrics/latency.csv,derived from simulation cycles not from a stopwatch
+L3,latency,attention engine M=3 1124691,cycles,simulation cycle count,sim/run/run_attn_m3.sh,same
+L4,latency,attention engine M=3 at 100 MHz,11.247,ms,cycles/1e8,metrics/latency.csv,board reading is 11.33 (0.7% higher: host polling granularity)
+L5,latency,attention engine M=4 2079001,cycles,simulation cycle count,sim/run/run_attn_m4.sh,same
+L6,latency,attention engine M=4 at 100 MHz,20.790,ms,cycles/1e8,metrics/latency.csv,board hosted reading 20.89; bare-metal reading exactly 20.790
+L7,latency,one window end to end bare metal,21.650,ms,register polling on the A9 no host,metrics/latency.csv,four measured segments 0.189+20.790+0.113+0.555; does not include the 5504-word acceptance readback
+L8,latency,one window end to end with a Python host,36.48,ms,PYNQ JTAG + Python,metrics/latency.csv,43.0% of this is host-side transfer; components sum to 36.01 and the last 0.47 ms is not itemised
+L9,latency,share of a 4 s window bare metal,0.54,percent,21.650/4000,metrics/latency.csv,one window per 4 s trial; does not account for acquisition
+R1,resource,slice LUTs M=4 whole BD,6995,count,Vivado report_utilization Routed,metrics/resource.csv,13.15% of 53200; whole design not the attention module alone
+R2,resource,slice registers M=4 whole BD,9566,count,Vivado report_utilization Routed,metrics/resource.csv,8.99%
+R3,resource,block RAM tiles M=4 whole BD,44,tiles,Vivado report_utilization Routed,metrics/resource.csv,31.43% of 140; 42 RAMB36 + 4 RAMB18
+R4,resource,DSP48E1 M=4 whole BD,20,count,Vivado report_utilization Routed,metrics/resource.csv,9.09%
+R5,resource,weight ROM M=4,54.5,KB,board INT8 measurement,_数字总表.md #E,this is the weight storage only not the total BRAM (44 tiles is ~198 KB)
+T1,timing,worst setup slack at the 200 MHz constraint M=4,-0.736,ns,Vivado report_timing Routed,metrics/timing.csv,constraint not met; 274 of 25366 endpoints; the design is NOT operated at 200 MHz
+T2,timing,worst setup slack at the 100 MHz operating point M=4,4.264,ns,re-report at period 10 ns,metrics/timing.csv,this is the signoff point; delivered bitstreams are all 100 MHz
+T3,timing,worst hold slack M=4,0.037,ns,Vivado report_timing Routed,metrics/timing.csv,0 failing endpoints
+V1,verification,bit exact arrays M=4,28,arrays,simulated vs fixpt.py,sim/run/run_attn_m4.sh,5504 words; also verified on the board and via bare metal
+V2,verification,bit exact words M=4,5504,words,simulated vs fixpt.py,sim/run/run_attn_m4.sh,same
+V3,verification,bit exact repeatability on the board,3,repeats,3 x 28 arrays x 5504 words bare metal,review_20261028/board_repeat_results.json,identical fixed input each time; not a worst-case proof
+V4,verification,float vs hardware arithmetic agreement,99.61,percent,1016 test trials one fold one target,metrics/accuracy.csv,weight int8 F1 is 0.37003 vs float 0.36811 so quantisation did not cost accuracy here
+A1,accuracy,deployed hardware arithmetic macro-F1,0.36695,F1,1016 test trials one fold one target,metrics/accuracy.csv,chance is 0.333; this is barely above chance
+A2,accuracy,adding the AU modality,2.28,percentage points,80 folds seed 0 pooled,metrics/accuracy.csv,3 seeds 3/3 exclude zero; subject bootstrap +1.47 to +3.12
+A3,accuracy,quad modality minus tri modality,-0.10,percentage points,80 folds seed 0 pooled,metrics/accuracy.csv,CI includes zero: the fourth modality costs latency and buys nothing
+A4,accuracy,online two-trial recalibration RF,0.77,percentage points,subject bootstrap 64,metrics/accuracy.csv,CI includes zero: no uniform benefit observed
+A5,accuracy,online two-trial recalibration R2G,0.83,percentage points,subject bootstrap 64,metrics/accuracy.csv,CI includes zero: no uniform benefit observed
+A6,accuracy,time delta injection psi(dt eps),-0.05,percentage points,4 targets x 5 folds,metrics/accuracy.csv,mechanism is traceable and nearly free but buys no accuracy on this dataset
+B1,baseline,same-board CPU time for the attention engine,7.470,ms,A9 C interpreter of the same instruction stream,metrics/cpu_baseline.csv,bit-exact 22/22 blocks; median of 5; A9 is 2.78x FASTER than the PL (adverse result)
+B2,baseline,same-board CPU time for the classification head,0.242,ms,A9 C,metrics/cpu_baseline.csv,secondary citation; PL compute 0.167 ms but 1.004 ms once transfer is counted
+X1,not_measured,power,NOT MEASURED,W,,,no meter and no PMBus on this board; do not infer from resources
+X2,not_measured,four-sensor synchronisation,NOT ESTABLISHED,,,metrics/timing.csv,no external reference was ever connected; the timestamp core runs from an internal strobe SRC=0xF
+X3,not_measured,real sensors acquisition,NOT ESTABLISHED,,,vectors are replayed from AFFEC recordings not acquired live
