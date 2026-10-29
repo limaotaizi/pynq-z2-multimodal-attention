@@ -13,7 +13,7 @@
 |---|---|---|---|
 | A1 | 报名已完成（否则后续全部归零） | ✅ **2026-10-29 作者确认** | 本清单无法自证，只能由作者登录官网核对；组别与提交账号已由作者确认无误 |
 | A2 | 仓库内所有目录名/文件名英文 | ✅ | `find . -name "*[^ -~]*"` 无输出；中文只出现在 `.md`/`.csv` 正文与注释里 |
-| A3 | 开源许可 MIT 或 Apache-2.0 | ✅ | `LICENSE`（MIT，代码）、`DATA_LICENSE.md`（数据：AFFEC 原始数据不分发，只放派生测试向量） |
+| A3 | 开源许可 MIT 或 Apache-2.0 | ✅ | `LICENSE`（MIT，代码）、`DATA_LICENSE.md`（数据：AFFEC 原始数据不分发，只放派生测试向量）、`THIRD_PARTY.md`（第三方工具/包/数据的许可与分发状态，逐项列明） |
 | A4 | 提交仓库在 GitHub/Gitee 开源 | ✅ **2026-10-29 已推送** | https://github.com/limaotaizi/pynq-z2-multimodal-attention（公开，`main`，MIT）；提交身份用 GitHub noreply 邮箱，未暴露真实地址 |
 | A5 | 工具版本说明 | ✅ | 全流程 Vivado/Vitis **2024.1**；指南推荐 2025.2/2026.1，差距与「未在新版本上验证过」写在 `build/README.md` 末尾与报告 §4 |
 

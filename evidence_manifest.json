@@ -3,7 +3,7 @@
   "generator": "metrics/make_evidence_manifest.py",
   "scope": "one entry per row of metrics/metrics.csv; each names the file the number came from",
   "how_to_verify": "Recompute md5 of a cited file and compare with the value here. A row with status 'missing' is a claim without shipped evidence; 'present_but_not_shipped' is a file on the author's disk that .gitignore keeps out of the repository.",
-  "git_tracked_files_seen": 272,
+  "git_tracked_files_seen": 284,
   "summary": {
     "claims": 32,
     "evidence_references": 30,

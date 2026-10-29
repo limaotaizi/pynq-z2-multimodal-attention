@@ -27,7 +27,7 @@ things a quick demonstration would happily hide.
 |---|---|
 | The PL engine is **bit-exact** against `src/model/fixpt.py` | `sim/run/run_attn_m{2,3,4}.sh` → 14 / 21 / 28 arrays, 3,200 / 4,224 / 5,504 words, all `PASS` |
 | Engine latency at 100 MHz, measured in cycles | M=2 466,157 cyc (4.662 ms) · M=3 1,124,691 cyc (11.247 ms) · M=4 2,079,001 cyc (20.790 ms) |
-| One window end-to-end on the board, no host in the loop | 21.650 ms median, bare-metal `BOOT.BIN`, reached two independent ways (JTAG reload and SD cold boot) |
+| One window end-to-end on the board, no host in the loop | 21.650 ms — load 0.189 + engine 20.790 + readback 0.113 + PS head 0.555, bare-metal `BOOT.BIN`, reached two independent ways (JTAG reload and SD cold boot). A 50-sample repeat gives a **21.644 ms median** (`board/repeat.json`) |
 | Agreement between the float model, the INT8/INT16 software arithmetic and the hardware | 99.61 % |
 | Resource cost of the M=4 whole block design | 6,995 LUT · 9,566 FF · 44 BRAM tiles (31.4 %) · 20 DSP48E1 — `metrics/resource.csv`, `build/reports/util_m4.rpt` |
 | Timing closure at the 100 MHz operating point | worst setup slack **+4.264 ns**, worst hold +0.037 ns, 0 failing endpoints |
@@ -70,6 +70,7 @@ report/        Design report (PDF + Markdown source) and the model-collaboration
 metrics/       Machine-readable metrics tables (latency, resource, timing, accuracy, cpu_baseline)
 BITSTREAM_MANIFEST.md   Which bitstream produced which number, and why UM matters
 evidence_manifest.json  Every claim in metrics.csv -> the file that backs it -> its md5
+THIRD_PARTY.md          Tools, packages and data used; what is not redistributed and why
 checklist.md            Submission requirements, item by item, including what is NOT done
 ```
 
@@ -173,3 +174,5 @@ a newer toolchain works without editing the repository.
 
 Code and derived fixed-point vectors: MIT, see `LICENSE`.
 Raw AFFEC recordings are **not** redistributed here — see `DATA_LICENSE.md`.
+No third-party source is vendored: the tools, packages and datasets this project
+depends on, and their terms, are listed in `THIRD_PARTY.md`.
