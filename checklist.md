@@ -14,7 +14,7 @@
 | A1 | 报名已完成（否则后续全部归零） | ✅ **2026-10-29 作者确认** | 本清单无法自证，只能由作者登录官网核对；组别与提交账号已由作者确认无误 |
 | A2 | 仓库内所有目录名/文件名英文 | ✅ | `find . -name "*[^ -~]*"` 无输出；中文只出现在 `.md`/`.csv` 正文与注释里 |
 | A3 | 开源许可 MIT 或 Apache-2.0 | ✅ | `LICENSE`（MIT，代码）、`DATA_LICENSE.md`（数据：AFFEC 原始数据不分发，只放派生测试向量） |
-| A4 | 提交仓库在 GitHub/Gitee 开源 | **待上传** | 本地已 `git add`，**尚无 commit**（缺 git 身份与远端）——见 §E |
+| A4 | 提交仓库在 GitHub/Gitee 开源 | ✅ **2026-10-29 已推送** | https://github.com/limaotaizi/pynq-z2-multimodal-attention（公开，`main`，MIT）；提交身份用 GitHub noreply 邮箱，未暴露真实地址 |
 | A5 | 工具版本说明 | ✅ | 全流程 Vivado/Vitis **2024.1**；指南推荐 2025.2/2026.1，差距与「未在新版本上验证过」写在 `build/README.md` 末尾与报告 §4 |
 
 ## B. 交付物（指南 3.3.5）
@@ -50,13 +50,13 @@
 | 证据链 | 新增 `evidence_manifest.json`（每条结论 → 文件 → md5）与 `metrics/make_evidence_manifest.py` |
 | 板端复验 | 板上重跑 3/3 轮 ALL PASS，中位 21.644 ms |
 
-## E. 上传前还差的三步（需要你）
+## E. 上传状态（2026-10-29）
 
-| # | 事项 | 为什么卡在这里 |
+| # | 事项 | 状态 |
 |---|---|---|
-| E1 | 定 `git config user.name` / `user.email` 并做首次 commit | 当前 `git status` 全部是 `A`（已暂存），`main` 分支**零 commit** |
-| E2 | 建远端仓库并 `git push` | 你说用自己的 GitHub 账号自己上传 |
-| E3 | 演示视频 `demo.mp4`（上电 → 串口 → 逐位 PASS → 计时） | 需要在板子前实际操作录制 |
+| E1 | 提交身份与首次 commit | ✅ `user.name = limaotaizi`，邮箱为 GitHub noreply 地址，未暴露真实邮箱；`07cc54e`，284 文件 |
+| E2 | 建远端仓库并推送 | ✅ https://github.com/limaotaizi/pynq-z2-multimodal-attention（`main`，公开） |
+| E3 | 演示视频 `demo.mp4`（上电 → 串口 → 逐位 PASS → 计时） | **待录制**——分镜与录制脚本见 `board/DEMO_VIDEO.md` |
 
 ## F. 明确没做（不填数、不淡化）
 
@@ -74,4 +74,4 @@
 
 工程证据是硬的，提交物是软的——本轮把「软」的部分补齐了大部分：可复现构建从承诺变成了
 逐字节证据，同板 CPU 基线补上了性能分母，证据链细化到每个文件的 md5。报名已于
-2026-10-29 由作者确认。剩下的两件事（commit/push、演示视频）都在你手上。
+2026-10-29 由作者确认，仓库已于同日推送至 GitHub。只剩演示视频一件事。
